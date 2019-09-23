@@ -1,3 +1,5 @@
+const chalk = require('chalk');
+const { log,table } = console;
 
 createArray = (rows,cols) => { //creates a 2 dimensional array of required height
   let arr = [];
@@ -22,23 +24,14 @@ fillArray = array => {
   
   return array;
 }
-
-let grid = createArray(16,16)
+let grid = createArray(149,39)
 let filledGrid = fillArray(grid)
-console.table(filledGrid);
+// log(filledGrid);
 
-function fillRandom() { //fill the grid randomly
-  for (var j = 0; j < gridHeight; j++) { //iterate through rows
-    for (var k = 0; k < gridWidth; k++) { //iterate through columns
-    var rawRandom = Math.random(); //get a raw random number
-    var improvedNum = (rawRandom * 2); //convert it to an int
-    var randomBinary = Math.floor(improvedNum);
-      if (randomBinary === 1) {
-      theGrid[j][k] = 1;
-      } else {
-      theGrid[j][k] = 0;
-      }
-    }  
-  }
-}
+process.stdout.write('\033c');
+setInterval(()=>{
+process.stdout.write('\033c');
+console.log(chalk.bgRed.green('Too early for Christmas?'));
+
+},1000)
 
