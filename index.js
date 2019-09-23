@@ -30,8 +30,8 @@ let filledGrid = fillArray(grid)
 
 process.stdout.write('\033c');
 setInterval(()=>{
-process.stdout.write('\033c');
-console.log(chalk.bgRed.green('Too early for Christmas?'));
+  process.stdout.write('\033c');
+  console.log(`${chalk.bgRed.green('Too early for Christmas?')} ${process.stdout.columns}x${process.stdout.rows}`);
 
 },1000)
 
