@@ -4,7 +4,7 @@ const { log,table } = console;
 createArray = (rows,cols) => { //creates a 2 dimensional array of required height
   let arr = [];
   let columsn = [];
-  
+
   for (var i = 0; i < cols; i++) {
     columsn[i]=0
   }
@@ -14,24 +14,43 @@ createArray = (rows,cols) => { //creates a 2 dimensional array of required heigh
   return arr;
 }
 
-fillArray = array => { 
+fillArray = array => {
+  let arrfilled = []
   array.forEach((row,i) => {
     let column = row.map((item,i) => {
-      return item + Math.floor(Math.random() * 2); 
+      return item + Math.floor(Math.random() * 10);
     });
-    array[i]=column
+    arrfilled[i]=column
   });
-  
-  return array;
+  return arrfilled;
 }
-let grid = createArray(149,39)
+
+// let grid = createArray(process.stdout.rows,146)
+let grid = createArray(process.stdout.rows,146)
 let filledGrid = fillArray(grid)
+// log(grid)
+// log(filledGrid)
 // log(filledGrid);
 
+printArr = (arrayForPrint) => {
+  let char = [];
+  let gridPaint = [];
+
+  arrayForPrint.forEach((row,i) => {
+    let column = row.map((item,i) => {
+      return char[i] = item === 0 ? `${chalk.bgCyan.green(' ')}`: `${chalk.bgRed.blue(' ')}`;
+    });
+    column.push('\n');
+    gridPaint.push(...column)
+  });
+  return gridPaint.join('');
+}
+console.log(`${process.stdout.columns} x ${process.stdout.rows}`);
+
 process.stdout.write('\033c');
+let gridPrint = printArr(filledGrid);
 setInterval(()=>{
   process.stdout.write('\033c');
-  console.log(`${chalk.bgRed.green('Too early for Christmas?')} ${process.stdout.columns}x${process.stdout.rows}`);
-
+  log(gridPrint)
 },1000)
 
