@@ -26,7 +26,7 @@ fillArray = array => {
 }
 
 // let grid = createArray(process.stdout.rows,146)
-let grid = createArray(process.stdout.rows,146)
+let grid = createArray(process.stdout.rows-4,process.stdout.columns)
 let filledGrid = fillArray(grid)
 // log(grid)
 // log(filledGrid)
