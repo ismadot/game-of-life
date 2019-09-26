@@ -1,0 +1,17 @@
+@import './helpers/mixins.scss';
+
+.Item {
+  height: 10vh;
+  width: 10vw;
+  @include center-flex;
+  &:hover{
+    background: fuchsia;
+  }
+  &-live{
+    background: orange; 
+  }
+
+  &-death{
+    background: grey;
+  }
+}

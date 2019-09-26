@@ -1,13 +1,13 @@
-import React,{ useEffect } from 'react';
+import React from 'react';
 import './App.scss';
 import Grid from './component/Grid';
 
 function App() {
-  console.log("componentWillMount");
+  // console.log("componentWillMount");
 
-  useEffect(() => {
-    console.log("componentDidMount");
-  }, []); 
+  // useEffect(() => {
+  //   console.log("componentDidMount");
+  // }, []); 
 
   return (
     <div className="App">
