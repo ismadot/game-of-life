@@ -54,46 +54,78 @@
 //   log(gridPrint)
 // },1000)
 
-export default class GameOfLife{
-  constructor(rows=10, cols=10) {
-    
+class GameOfLife{
+
+  constructor (rows=10, cols=10) {
     this.rows = rows;
     this.cols = cols;
+    this.gridPlay=[[0]];
     this.init(this.rows,this.cols);
-
   }
 
-  createArray(rows,cols) { //creates a 2 dimensional array of required height
+  createArray (rows,cols) { //creates a 2 dimensional array of required height
     let arr = [];
     let columsn = [];
-    
+
     for (var i = 0; i < cols; i++) {
-      columsn[i]=0
+      columsn[i]=0;
     }
     for (let i = 0; i < rows; i++) {
       arr[i] = columsn;
     }
-    return arr;    
+    return arr;
   }
 
-  init(rows,cols){
+  init (rows,cols){
     let grid = this.createArray(rows,cols);
     let arrFilled = this.fillArray(grid);
     this.gridPlay = arrFilled;
   }
 
   fillArray (array) {
-    let arrFilled = []
+    let arrFilled = [];
     array.forEach((row,i) => {
-      let column = row.map((item,i) => {
+      let column = row.map((item) => {
         return item + Math.floor(Math.random() * 3)===1? 1 : 0;
       });
-      arrFilled[i]=column
+      arrFilled[i]=column;
     });
     return arrFilled;
+  }
+
+  isFilled(x, y) {
+    const { gridPlay } = this;
+    return gridPlay[x] && gridPlay[x][y];
+  }
+
+  conuntNeighbour (x=0, y=0) {
+    // const {  } = this;
+    let neighbour = 0;
+    this.isFilled(x, y-1)?neighbour++:null; // left
+    this.isFilled(x, y+1)?neighbour++:null; // right
+
+    this.isFilled(x-1, y)?neighbour++:null; //down
+    this.isFilled(x-1, y-1)?neighbour++:null;
+    this.isFilled(x-1, y+1)?neighbour++:null;
+
+    this.isFilled(x+1, y)?neighbour++:null; //up
+    this.isFilled(x+1, y+1)?neighbour++:null;
+    this.isFilled(x+1, y-1)?neighbour++:null;
+    console.log(neighbour);
+    return neighbour;
   }
 
   get canvasPlay () {
     return this.gridPlay;
   }
 }
+
+let newGame = new GameOfLife(10,10);
+
+console.log(newGame.canvasPlay);
+newGame.conuntNeighbour(1,1);
+// console.log("newGame ",newGame);
+
+
+
+module.exports = GameOfLife;

@@ -23,7 +23,6 @@ const actionsMap = {
   },
   [GRID_INITIALIZE]: (state,action) => {
     const grid = action.payload;
-    console.log(action.payload)
     return {
       ...state,
       grid
@@ -39,7 +38,7 @@ const reducerMap = (state = initialState, action = {}) => {
 const AppContextProvider = ({children}) => {
   let [state, dispatch] = useReducer(reducerMap, initialState);
   let value = { state, dispatch };
-  
+
   return (
     <AppContext.Provider value={value}>
       {children}
